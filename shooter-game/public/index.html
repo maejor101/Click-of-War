@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplayer Shooter Game</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #gameContainer {
+            position: relative;
+            margin-top: 20px;
+        }
+        #gameCanvas {
+            border: 2px solid #333;
+            background: #000;
+        }
+        #scoreBoard {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #timer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #loginScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .button {
+            background: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #gameOverScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        #gameOverScreen h1 {
+            color: #4CAF50;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        #gameOverScreen .results {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-width: 300px;
+        }
+        #gameOverScreen .winner {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        #gameOverScreen .scores {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginScreen">
+        <h2>Enter Your Name</h2>
+        <input type="text" id="playerName" placeholder="Your Name">
+        <button class="button" id="joinButton">Join Game</button>
+    </div>
+    
+    <div id="gameContainer" style="display: none;">
+        <canvas id="gameCanvas"></canvas>
+        <div id="scoreBoard">Scores: </div>
+        <div id="timer">Time: 60</div>
+    </div>
+    
+    <div id="gameOverScreen">
+        <h1>Game Over!</h1>
+        <div class="results">
+            <div class="winner"></div>
+            <div class="scores"></div>
+        </div>
+        <button class="button" id="playAgainButton">Play Again</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/game.js"></script>
+</body>
+</html>
